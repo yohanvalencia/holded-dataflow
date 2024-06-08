@@ -9,14 +9,13 @@ on:
   push:
     branches:
       - main
-      - master
     tags:
       - '*'
   pull_request:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   linux:
@@ -94,10 +93,35 @@ jobs:
     needs: [linux, macos, sdist]
     steps:
       - uses: actions/download-artifact@v4
+        with:
+          name: wheels-linux-x86_64
+          path: wheels/linux/x86_64
+      - uses: actions/download-artifact@v4
+        with:
+          name: wheels-linux-x86
+          path: wheels/linux/x86
+      - uses: actions/download-artifact@v4
+        with:
+          name: wheels-macos-x86_64
+          path: wheels/macos/x86_64
+      - uses: actions/download-artifact@v4
+        with:
+          name: wheels-macos-aarch64
+          path: wheels/macos/aarch64
+      - uses: actions/download-artifact@v4
+        with:
+          name: wheels-sdist
+          path: wheels/sdist
       - name: Publish to PyPI
         uses: PyO3/maturin-action@v1
         env:
           MATURIN_PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
         with:
           command: upload
-          args: --non-interactive --skip-existing wheels-*/*
+          args: --non-interactive --skip-existing wheels/*/* wheels/sdist/*
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: wheels/*/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
