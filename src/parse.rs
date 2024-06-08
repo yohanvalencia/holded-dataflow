@@ -7,7 +7,6 @@ use pyo3::exceptions;
 
 pub struct PyJsonValue(pub Value);
 
-// Implement ToPyObject for PyJsonValue
 impl ToPyObject for PyJsonValue {
     fn to_object(&self, py: Python<'_>) -> PyObject {
         value_to_object(&self.0, py)
