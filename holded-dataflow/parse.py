@@ -1,5 +1,4 @@
 from typing import Dict, Any
-import holded_dataflow
 
 
 def parse_attributes(attributes: Dict[str, str]) -> Dict[str, Any]:
@@ -12,7 +11,7 @@ def parse_attributes(attributes: Dict[str, str]) -> Dict[str, Any]:
     Returns:
         dict: A dictionary containing parsed attribute key-value pairs.
     """
-    return holded_dataflow.parse_attributes(attributes)
+    pass
 
 
 def parse_binary_json(data: bytes) -> Any:
@@ -25,4 +24,4 @@ def parse_binary_json(data: bytes) -> Any:
     Returns:
         Any: The parsed JSON object.
     """
-    return holded_dataflow.parse_binary_json(data)
+    pass

@@ -1,6 +1,3 @@
-import holded_dataflow
-
-
 def is_blacklisted(name: str, filter_type: str) -> bool:
     """
     Check if an event is blacklisted.
@@ -13,4 +10,4 @@ def is_blacklisted(name: str, filter_type: str) -> bool:
     - True if the event is blacklisted for the specified filter type, False otherwise.
     """
     # Function implementation remains the same
-    return holded_dataflow.is_blacklisted(name, filter_type)
+    pass
