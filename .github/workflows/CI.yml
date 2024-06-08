@@ -9,6 +9,7 @@ on:
   push:
     branches:
       - main
+      - master
     tags:
       - '*'
   pull_request:
@@ -43,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wheels-linux-${{ matrix.platform.target }}
-          path: dist
+          path: dist/*.whl
 
   macos:
     runs-on: ${{ matrix.platform.runner }}
@@ -69,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wheels-macos-${{ matrix.platform.target }}
-          path: dist
+          path: dist/*.whl
 
   sdist:
     runs-on: ubuntu-latest
@@ -84,7 +85,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wheels-sdist
-          path: dist
+          path: dist/*.tar.gz
 
   release:
     name: Release
@@ -118,10 +119,10 @@ jobs:
           MATURIN_PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
         with:
           command: upload
-          args: --non-interactive --skip-existing wheels/*/* wheels/sdist/*
+          args: --non-interactive --skip-existing wheels/*/*/*.whl wheels/sdist/*.tar.gz
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: wheels/*/*
+          files: wheels/*/*/*.whl wheels/sdist/*.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
