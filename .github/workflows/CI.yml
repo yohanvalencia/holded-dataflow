@@ -19,20 +19,6 @@ permissions:
   contents: write
 
 jobs:
-  bump-version:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      - name: Install bump2version
-        run: pip install bump2version
-      - name: Create environment file
-        run: echo "NEW_VERSION=${GITHUB_REF#refs/tags/}" >> env.list
-      - name: Load environment variables
-        run: source env.list
-      - name: Bump version
-        run: bump2version patch --new-version ${{ env.NEW_VERSION }}
-
   linux:
     runs-on: ${{ matrix.platform.runner }}
     needs: bump-version
