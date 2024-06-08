@@ -31,7 +31,7 @@ jobs:
       - name: Load environment variables
         run: source env.list
       - name: Bump version
-        run: bump2version patch --new-version ${NEW_VERSION}
+        run: bump2version patch --new-version ${{ env.NEW_VERSION }}
 
   linux:
     runs-on: ${{ matrix.platform.runner }}
