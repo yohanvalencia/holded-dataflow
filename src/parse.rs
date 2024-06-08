@@ -2,7 +2,7 @@ use pyo3::prelude::*;
 use pyo3::types::PyDict;
 use serde_json::Value;
 use std::collections::HashMap;
-
+use pyo3::exceptions;
 
 
 pub struct PyJsonValue(pub Value);
@@ -71,4 +71,23 @@ pub fn parse_attributes(py: Python, attributes: HashMap<String, String>, _py: Py
     }
 
     Ok(parsed_attributes.into())
+}
+
+#[pyfunction]
+pub fn parse_binary_json(py: Python, data: &PyAny) -> PyResult<PyObject> {
+    // Extract binary data
+    let bytes_data = data.extract::<&[u8]>()?;
+
+    // Decode binary data into a UTF-8 string
+    let json_str = std::str::from_utf8(bytes_data)
+        .map_err(|e| PyErr::new::<exceptions::PyUnicodeDecodeError, _>(format!("{}", e)))?;
+
+    // Parse UTF-8 string as JSON
+    let parsed_json: Value = serde_json::from_str(json_str)
+        .map_err(|e| PyErr::new::<exceptions::PyValueError, _>(format!("Failed to parse JSON: {}", e)))?;
+
+    // Convert the parsed JSON to a Python object
+    let parsed_json_pyobj = PyJsonValue(parsed_json).to_object(py);
+
+    Ok(parsed_json_pyobj)
 }
