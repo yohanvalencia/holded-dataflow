@@ -13,3 +13,15 @@ def parse_attributes(attributes: Dict[str, str]) -> Dict[str, Any]:
         dict: A dictionary containing parsed attribute key-value pairs.
     """
     return holded_dataflow.parse_attributes(attributes)
+
+def parse_binary_json(data: bytes) -> Any:
+    """
+    Parse binary JSON data and return the parsed JSON object.
+
+    Args:
+        data (bytes): Binary JSON data.
+
+    Returns:
+        Any: The parsed JSON object.
+    """
+    return holded_dataflow.parse_binary_json(data)
