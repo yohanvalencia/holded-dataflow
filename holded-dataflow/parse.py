@@ -14,6 +14,7 @@ def parse_attributes(attributes: Dict[str, str]) -> Dict[str, Any]:
     """
     return holded_dataflow.parse_attributes(attributes)
 
+
 def parse_binary_json(data: bytes) -> Any:
     """
     Parse binary JSON data and return the parsed JSON object.
