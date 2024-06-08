@@ -6,7 +6,7 @@ build-backend = "maturin"
 name = "holded-dataflow"
 requires-python = ">=3.8"
 version = "0.1.0"
-authors = ["Yohan Valencia <yohan.vt@gmail.com>"]
+authors = [{name = "Yohan Valencia", email = "yohan.vt@gmail.com"}]
 description = "Core logic of ingestion pipeline"
 readme = "README.md"
 license = {text = "MIT OR Apache-2.0"}
