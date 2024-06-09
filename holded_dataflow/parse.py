@@ -11,7 +11,6 @@ def parse_attributes(attributes: Dict[str, str]) -> Dict[str, Any]:
     Returns:
         dict: A dictionary containing parsed attribute key-value pairs.
     """
-    pass
 
 
 def parse_binary_json(data: bytes) -> Any:
@@ -24,4 +23,3 @@ def parse_binary_json(data: bytes) -> Any:
     Returns:
         Any: The parsed JSON object.
     """
-    pass

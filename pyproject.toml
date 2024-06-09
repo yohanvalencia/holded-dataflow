@@ -5,7 +5,7 @@ build-backend = "maturin"
 [project]
 name = "holded-dataflow"
 requires-python = ">=3.8"
-version = "0.1.5"
+version = "0.1.6"
 authors = [{name = "Yohan Valencia", email = "yohan.vt@gmail.com"}]
 description = "Core logic of ingestion pipeline"
 readme = "README.md"
