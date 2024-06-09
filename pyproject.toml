@@ -9,7 +9,7 @@ version = "0.1.6"
 authors = [{name = "Yohan Valencia", email = "yohan.vt@gmail.com"}]
 description = "Core logic of ingestion pipeline"
 readme = "README.md"
-license = {text = "MIT OR Apache-2.0"}
+license = {text = "Apache-2.0"}
 keywords = ["rust", "python", "bindings"]
 classifiers = [
     "Programming Language :: Python :: 3",

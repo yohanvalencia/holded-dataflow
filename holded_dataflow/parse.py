@@ -23,3 +23,12 @@ def parse_binary_json(data: bytes) -> Any:
     Returns:
         Any: The parsed JSON object.
     """
+
+
+def old_cookie_parser(cookie: str) -> dict:
+    """
+    Parse a string cookie value and convert it into a json object
+    with more data.
+    :param cookie:
+    :return: dict
+    """
